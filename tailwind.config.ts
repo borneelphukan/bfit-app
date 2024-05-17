@@ -49,6 +49,7 @@ module.exports = {
           100: "#95CCE3",
           200: "#D8E6EC",
         },
+        cover: "#F7F6FA",
       },
     },
   },
