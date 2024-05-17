@@ -4,8 +4,8 @@
       <div class="flex-grow">
         <!-- Other page content goes here -->
         <div class="container flex flex-col gap-1 mx-auto p-5">
-          <p>Good Morning 🔥</p>
-          <p class="font-bold text-2xl">Pramuditya Uzumaki</p>
+          <p class="mt-3">Good Morning 🔥</p>
+          <p class="font-bold text-2xl mb-5">Pramuditya Uzumaki</p>
           <SearchBar />
           <p class="my-5 font-bold text-lg">Popular Workouts</p>
         </div>
