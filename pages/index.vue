@@ -18,7 +18,9 @@
       <span class="bg-primary-green">Health</span> Is Number One
     </h1>
     <!-- Tagline -->
-    <p class="my-5 text-center text-sm sm:text-base md:text-lg lg:text-xl text-secondary-300">
+    <p
+      class="my-5 text-center text-sm sm:text-base md:text-lg lg:text-xl text-secondary-300"
+    >
       There is no instant way to a healthy life
     </p>
 
@@ -38,17 +40,20 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { useRouter } from 'vue-router';
+import { useRouter } from "vue-router";
 import Button from "../components/Button.vue";
 
 export default defineComponent({
   components: {
     Button,
   },
+  mounted() {
+    document.title = "BFit - Your Personal Fitness Tracker";
+  },
   setup() {
     const router = useRouter();
     const handleButtonClick = () => {
-      router.push('/home');
+      router.push("/home");
     };
 
     return { handleButtonClick };
