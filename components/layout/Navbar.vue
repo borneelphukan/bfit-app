@@ -1,9 +1,12 @@
-<!-- components/Navbar.vue -->
 <template>
   <nav class="bg-black rounded-full flex items-center justify-around p-2">
-    <a
-      href="/home"
-      class="flex flex-row gap-2 items-center bg-primary-green text-black py-2 px-4 rounded-full"
+    <!-- Home -->
+    <router-link
+      to="/home"
+      :class="[
+        'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
+        activeLink === '/home' ? 'bg-primary-green text-black' : 'text-white',
+      ]"
     >
       <svg
         width="18"
@@ -14,13 +17,20 @@
       >
         <path
           d="M0 7.53393C0 6.57062 0.462591 5.66591 1.24353 5.1019L7.24353 0.768563C8.29207 0.0112796 9.70793 0.0112797 10.7565 0.768563L16.7565 5.1019C17.5374 5.66591 18 6.57062 18 7.53393V16C18 17.1046 17.1046 18 16 18H11C10.4477 18 10 17.5523 10 17V14C10 13.4477 9.55229 13 9 13H6.25C5.69772 13 5.25 13.4477 5.25 14V17C5.25 17.5523 4.80228 18 4.25 18H2C0.89543 18 0 17.1046 0 16V7.53393Z"
-          fill="#192126"
+          :fill="activeLink === '/home' ? '#192126' : 'white'"
         />
       </svg>
+      <span v-if="activeLink === '/home'">Home</span>
+    </router-link>
 
-      Home
-    </a>
-    <a href="/explore" class="text-white">
+    <!-- Explore -->
+    <router-link
+      to="/explore"
+      :class="[
+        'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
+        activeLink === '/explore' ? 'bg-primary-green text-black' : 'text-white',
+      ]"
+    >
       <svg
         width="24"
         height="24"
@@ -62,8 +72,17 @@
           stroke-linejoin="round"
         />
       </svg>
-    </a>
-    <a href="#" class="text-white">
+      <span v-if="activeLink === '/explore'">Explore</span>
+    </router-link>
+
+    <!-- Analytics -->
+    <router-link
+      to="/analytics"
+      :class="[
+        'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
+        activeLink === '/analytics' ? 'bg-primary-green text-black' : 'text-white',
+      ]"
+    >
       <svg
         width="24"
         height="24"
@@ -87,8 +106,17 @@
           stroke-width="1.5"
         />
       </svg>
-    </a>
-    <a href="#" class="text-white">
+      <span v-if="activeLink === '/music'">Analytics</span>
+    </router-link>
+
+    <!-- Profile -->
+    <router-link
+      to="/profile"
+      :class="[
+        'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
+        activeLink === '/profile' ? 'bg-primary-green text-black' : 'text-white',
+      ]"
+    >
       <svg
         width="24"
         height="24"
@@ -103,15 +131,32 @@
           stroke-width="1.5"
         />
       </svg>
-    </a>
+      <span v-if="activeLink === '/profile'">Profile</span>
+    </router-link>
   </nav>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, ref, watch } from "vue";
+import { useRoute } from "vue-router";
 
 export default defineComponent({
   name: "Navbar",
+  setup() {
+    const activeLink = ref("/home"); // Default active link
+    const route = useRoute();
+
+    // Watch for changes in the route path and update activeLink accordingly
+    watch(
+      () => route.path,
+      (newPath) => {
+        activeLink.value = newPath;
+      },
+      { immediate: true }
+    );
+
+    return { activeLink };
+  },
 });
 </script>
 
