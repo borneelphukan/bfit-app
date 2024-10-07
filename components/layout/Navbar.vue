@@ -3,7 +3,7 @@
   <nav class="bg-black rounded-full flex items-center justify-around p-2">
     <a
       href="#"
-      class="flex flex-row gap-2 items-center bg-lime-500 text-black py-2 px-4 rounded-full"
+      class="flex flex-row gap-2 items-center bg-primary-green text-black py-2 px-4 rounded-full"
     >
       <svg
         width="18"

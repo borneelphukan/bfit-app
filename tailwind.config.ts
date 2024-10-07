@@ -10,7 +10,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      lato: ["Lato"],
+      lato: ["Lato", "sans-serif"],
     },
     fontWeight: {
       extrabold: 800,
@@ -29,27 +29,16 @@ module.exports = {
           green: "#BBF246",
         },
         secondary: {
-          100: "#384046",
-          200: "#5E6468",
-          300: "#8B8F92",
+          gray: {
+            300: "#8B8F92",
+            400: "#5E6468",
+            500: "#384046",
+          },
+          purple: "#A48AED",
+          red: "#ED4747",
+          yellow: "#FCC46F",
+          blue: "#95CCE3",
         },
-        purple: {
-          100: "#A48AED",
-          200: "#EAECFF",
-        },
-        red: {
-          100: "#ED4747",
-          200: "#FFEBEB",
-        },
-        yellow: {
-          100: "#FCC46F",
-          200: "#FFE8C6",
-        },
-        blue: {
-          100: "#95CCE3",
-          200: "#D8E6EC",
-        },
-        cover: "#F7F6FA",
       },
     },
   },
