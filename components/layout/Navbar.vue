@@ -106,7 +106,7 @@
           stroke-width="1.5"
         />
       </svg>
-      <span v-if="activeLink === '/music'">Analytics</span>
+      <span v-if="activeLink === '/analytics'">Analytics</span>
     </router-link>
 
     <!-- Profile -->
