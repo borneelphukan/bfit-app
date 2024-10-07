@@ -2,7 +2,7 @@
 <template>
   <nav class="bg-black rounded-full flex items-center justify-around p-2">
     <a
-      href="#"
+      href="/home"
       class="flex flex-row gap-2 items-center bg-primary-green text-black py-2 px-4 rounded-full"
     >
       <svg
@@ -20,7 +20,7 @@
 
       Home
     </a>
-    <a href="#" class="text-white">
+    <a href="/explore" class="text-white">
       <svg
         width="24"
         height="24"

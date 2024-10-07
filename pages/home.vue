@@ -65,7 +65,7 @@ import SmallWorkoutCard from "../components/card/SmallWorkoutCard.vue"; // Impor
 
 // Import the image
 import bgImage from "../assets/images/onboarding.png";
-import workoutImage from "../assets/images/onboarding.png"; // Example workout image
+import workoutImage from "../assets/images/onboarding.png";
 
 export default defineComponent({
   data() {
