@@ -5,9 +5,10 @@
         <!-- Other page content goes here -->
         <div class="container flex flex-col gap-1 mx-auto p-5">
           <WorkoutCard
-            header="Lower Body Training"
+            header="Best Quarantine Workout"
             energy="500 kcal"
             time="50 min"
+            info
             :bg-image="bgImage"
           />
           <!-- Challenge Section -->

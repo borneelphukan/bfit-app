@@ -4,10 +4,43 @@
     :style="{ backgroundImage: `url(${bgImage})` }"
   >
     <div class="absolute inset-0 bg-black opacity-50"></div>
-    <div class="relative flex items-center h-full p-6 text-white">
+
+    <!-- Workout Card with info -->
+    <div v-if="info" class="relative flex items-center h-full p-6 text-white">
+      <!-- Left Column: Text -->
+      <a href="/home" class="flex flex-col justify-center space-y-10 w-3/4">
+        <h2 class="text-3xl font-sm pb-2">{{ header }}</h2>
+
+        <!-- Energy and Time Badges -->
+        <div class="inline-flex max-w-max">
+          <p class="text-primary-green font-semibold flex items-center gap-1">
+            See More
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-5 my-auto"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Workout Card -->
+    <div v-else class="relative flex items-center h-full p-6 text-white">
       <!-- Left Column: Text -->
       <div class="flex flex-col justify-center space-y-2 w-3/4">
         <h2 class="text-xl font-bold pb-2">{{ header }}</h2>
+
+        <!-- Energy and Time Badges -->
         <div
           class="inline-flex bg-white bg-opacity-75 px-2 py-1 rounded-lg max-w-max"
         >
@@ -25,6 +58,7 @@
           </p>
         </div>
       </div>
+
       <!-- Right Column: Play Button -->
       <div class="flex justify-center items-center w-1/4">
         <button
@@ -68,15 +102,19 @@ export default defineComponent({
     },
     energy: {
       type: String,
-      required: true,
+      required: false,
     },
     time: {
       type: String,
-      required: true,
+      required: false,
     },
     bgImage: {
       type: String,
       required: true,
+    },
+    info: {
+      type: Boolean,
+      default: false,
     },
   },
 });
