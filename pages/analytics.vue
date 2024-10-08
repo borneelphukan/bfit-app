@@ -32,7 +32,7 @@ import bgImage from "../assets/images/onboarding.png";
 import fire from "../assets/icons/fire.svg";
 import sprint from "../assets/icons/sprint.svg";
 import squat from "../assets/icons/squat.svg";
-import WarmupCard from "~/components/card/WarmupCard.vue";
+import ExerciseCard from "~/components/card/ExerciseCard.vue";
 
 export default defineComponent({
   data() {
@@ -47,7 +47,7 @@ export default defineComponent({
     Navbar,
     SquareCard,
     WorkoutCard,
-    WarmupCard,
+    ExerciseCard,
   },
 });
 </script>

@@ -29,7 +29,7 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  name: "WarmupCard",
+  name: "ExerciseCard",
   props: {
     header: {
       type: String,

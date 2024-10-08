@@ -1,5 +1,7 @@
 <template>
-  <nav class="bg-black rounded-full flex items-center justify-around p-2">
+  <nav
+    class="fixed bottom-0 left-0 w-[95%] bg-black rounded-full flex items-center justify-around p-2 z-50 m-2 h-[6%]"
+  >
     <!-- Home -->
     <router-link
       to="/home"
@@ -28,7 +30,9 @@
       to="/explore"
       :class="[
         'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
-        activeLink === '/explore' ? 'bg-primary-green text-black' : 'text-white',
+        activeLink === '/explore'
+          ? 'bg-primary-green text-black'
+          : 'text-white',
       ]"
     >
       <svg
@@ -80,7 +84,9 @@
       to="/analytics"
       :class="[
         'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
-        activeLink === '/analytics' ? 'bg-primary-green text-black' : 'text-white',
+        activeLink === '/analytics'
+          ? 'bg-primary-green text-black'
+          : 'text-white',
       ]"
     >
       <svg
@@ -114,7 +120,9 @@
       to="/profile"
       :class="[
         'flex flex-row gap-2 items-center py-2 px-4 rounded-full',
-        activeLink === '/profile' ? 'bg-primary-green text-black' : 'text-white',
+        activeLink === '/profile'
+          ? 'bg-primary-green text-black'
+          : 'text-white',
       ]"
     >
       <svg

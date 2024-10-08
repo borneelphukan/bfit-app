@@ -5,11 +5,67 @@
         <!-- Other page content goes here -->
         <div class="container flex flex-col gap-1 mx-auto p-5">
           <WorkoutCard
-            header="Lower Body Training"
+            header="Best Quarantine Workout"
             energy="500 kcal"
             time="50 min"
+            info
             :bg-image="bgImage"
           />
+
+          <!-- Best for you -->
+          <p class="my-5 font-bold text-lg">Best for you</p>
+          <div class="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
+            <!-- Row 1 -->
+            <div class="flex space-x-3 snap-mandatory min-w-max mb-4">
+              <ExerciseCard
+                class="w-56 h-36"
+                header="Leg exercises"
+                time="10 min"
+                level="Beginner"
+                :image="bgImage"
+              />
+              <ExerciseCard
+                class="w-56 h-36"
+                header="Backward lunges"
+                time="10 min"
+                level="Beginner"
+                :image="bgImage"
+              />
+              <ExerciseCard
+                class="w-56 h-36"
+                header="Squats"
+                time="15 min"
+                level="Intermediate"
+                :image="bgImage"
+              />
+            </div>
+
+            <!-- Row 2 -->
+            <div class="flex space-x-3 snap-mandatory min-w-max">
+              <ExerciseCard
+                class="w-56 h-36"
+                header="Plank"
+                time="10 min"
+                level="Intermediate"
+                :image="bgImage"
+              />
+              <ExerciseCard
+                class="w-56 h-36"
+                header="Push-ups"
+                time="10 min"
+                level="Beginner"
+                :image="bgImage"
+              />
+              <ExerciseCard
+                class="w-56 h-36"
+                header="Bicycle crunches"
+                time="15 min"
+                level="Advanced"
+                :image="bgImage"
+              />
+            </div>
+          </div>
+
           <!-- Challenge Section -->
           <p class="my-5 font-bold text-lg">Challenge</p>
           <div class="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
@@ -23,13 +79,13 @@
           <p class="my-5 font-bold text-lg">Fast Warmup</p>
           <div class="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
             <div class="flex space-x-3 snap-mandatory min-w-max">
-              <WarmupCard
+              <ExerciseCard
                 header="Leg exercises"
                 time="10 min"
                 level="Beginner"
                 :image="bgImage"
               />
-              <WarmupCard
+              <ExerciseCard
                 header="Backward lunges"
                 time="10 min"
                 level="Beginner"
@@ -55,7 +111,7 @@ import bgImage from "../assets/images/onboarding.png";
 import fire from "../assets/icons/fire.svg";
 import sprint from "../assets/icons/sprint.svg";
 import squat from "../assets/icons/squat.svg";
-import WarmupCard from "~/components/card/WarmupCard.vue";
+import ExerciseCard from "~/components/card/ExerciseCard.vue";
 
 export default defineComponent({
   data() {
@@ -70,7 +126,7 @@ export default defineComponent({
     Navbar,
     SquareCard,
     WorkoutCard,
-    WarmupCard,
+    ExerciseCard,
   },
 });
 </script>

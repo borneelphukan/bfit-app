@@ -24,13 +24,13 @@
           <p class="my-5 font-bold text-lg">Fast Warmup</p>
           <div class="overflow-x-auto scrollbar-hide snap-x snap-mandatory">
             <div class="flex space-x-3 snap-mandatory min-w-max">
-              <WarmupCard
+              <ExerciseCard
                 header="Leg exercises"
                 time="10 min"
                 level="Beginner"
                 :image="bgImage"
               />
-              <WarmupCard
+              <ExerciseCard
                 header="Backward lunges"
                 time="10 min"
                 level="Beginner"
@@ -56,7 +56,7 @@ import bgImage from "../assets/images/onboarding.png";
 import fire from "../assets/icons/fire.svg";
 import sprint from "../assets/icons/sprint.svg";
 import squat from "../assets/icons/squat.svg";
-import WarmupCard from "~/components/card/WarmupCard.vue";
+import ExerciseCard from "../components/card/ExerciseCard.vue";
 
 export default defineComponent({
   data() {
@@ -71,7 +71,7 @@ export default defineComponent({
     Navbar,
     SquareCard,
     WorkoutCard,
-    WarmupCard,
+    ExerciseCard,
   },
 });
 </script>
