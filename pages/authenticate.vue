@@ -5,7 +5,7 @@
     <div class="w-full max-w-md mb-10">
       <img
         class="mx-auto h-12 w-auto mb-10"
-        src="../assets//images//lo-golfpost.svg"
+        src="../assets/images/onboarding.png"
         alt="Golf Post"
       />
       <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
