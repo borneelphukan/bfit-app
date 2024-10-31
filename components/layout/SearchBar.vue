@@ -22,7 +22,7 @@
       </div>
       <input
         type="text"
-        class="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-50 text-secondary-300 placeholder-secondary-200 focus:ring-primary-green focus:border-primary-green"
+        class="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-200 text-secondary-300 placeholder-secondary-200 focus:ring-primary-green focus:border-primary-green"
         placeholder="Search"
         v-model="searchQuery"
         @input="handleInput"

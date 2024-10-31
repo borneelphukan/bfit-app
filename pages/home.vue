@@ -5,7 +5,7 @@
         <!-- Other page content goes here -->
         <div class="container flex flex-col gap-1 mx-auto p-5">
           <p class="mt-3">Good {{ greeting }}</p>
-          <p class="font-bold text-2xl mb-5">Pramuditya Uzumaki</p>
+          <p class="font-bold text-2xl mb-5">Borneel B. Phukan</p>
 
           <SearchBar />
 
