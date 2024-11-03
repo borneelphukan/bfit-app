@@ -10,20 +10,18 @@ const getSubscriptionDetails = async (
   try {
     const userId = req.query.userId as string;
 
-    if (!userId) {
-      res
-        .status(400)
-        .json({ message: "User ID is required as a query parameter." });
-      return;
+    let query = `SELECT * FROM Subscription`;
+    const params: any[] = [];
+
+    if (userId) {
+      query += ` WHERE user_id = ?`;
+      params.push(userId);
     }
 
-    const query = `SELECT * FROM Subscription WHERE user_id = ?`;
-    const [rows] = await pool.execute(query, [userId]);
+    const [rows] = await pool.execute(query, params);
 
     if ((rows as any[]).length === 0) {
-      res
-        .status(404)
-        .json({ message: "No subscription found for the provided User ID." });
+      res.status(404).json({ message: "No subscription data found." });
       return;
     }
 
