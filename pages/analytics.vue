@@ -38,7 +38,7 @@
                 value="645 Cal"
                 class="mb-2"
               />
-              <HealthCard title="Training Time" value="80%" class="mt-2" />
+              <HealthCard title="Training Time" value="1:34:09" class="mt-2" />
             </div>
 
             <!-- Cycling Card Column -->
