@@ -9,12 +9,11 @@
     </div>
 
     <div v-if="chart" class="mt-2">
-      <!-- Add chart content here, if available -->
+      <LineChart :data="lineChartData" :options="chartOptions" />
     </div>
 
     <div v-if="sleepChart" class="mt-2">
-      <!-- Render Chart.js Bar chart for sleep data -->
-      <BarChart :data="chartData" :options="chartOptions" />
+      <BarChart :data="barChartData" :options="barChartOptions" />
     </div>
 
     <div v-if="map" class="h-24 mt-2 rounded-lg">
@@ -25,17 +24,20 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { Line } from "vue-chartjs";
 import { Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
+  LineElement,
+  PointElement,
   BarElement,
   CategoryScale,
   LinearScale,
 } from "chart.js";
-import type { ChartData } from "chart.js"; // Import ChartData as a type
+import type { ChartData } from "chart.js";
 
 import cycle from "../../assets/icons/cycle.svg";
 import heart from "../../assets/icons/heart.svg";
@@ -43,11 +45,12 @@ import steps from "../../assets/icons/steps.svg";
 import sleep from "../../assets/icons/sleep.svg";
 import water from "../../assets/icons/drop.svg";
 
-// Register necessary chart.js components
 ChartJS.register(
   Title,
   Tooltip,
   Legend,
+  LineElement,
+  PointElement,
   BarElement,
   CategoryScale,
   LinearScale
@@ -55,16 +58,18 @@ ChartJS.register(
 
 export default defineComponent({
   components: {
-    BarChart: Bar, // Register Bar component from vue-chartjs
+    LineChart: Line,
+    BarChart: Bar,
   },
   props: {
     title: { type: String, required: true },
     value: { type: String, required: false },
     icon: { type: String, required: false },
     chart: { type: Boolean, default: false },
-    sleepChart: { type: Boolean, default: false }, // Define sleepChart prop
+    sleepChart: { type: Boolean, default: false },
     map: { type: Boolean, default: false },
-    barGraphData: { type: Array as () => number[], default: () => [] }, // Explicitly type as number[]
+    barGraphData: { type: Array as () => number[], default: () => [] },
+    heartRateData: { type: Array as () => number[], default: () => [] },
   },
   computed: {
     backgroundColor() {
@@ -101,20 +106,46 @@ export default defineComponent({
           return "";
       }
     },
-    chartData(): ChartData<"bar"> {
-      // Explicitly type as ChartData<"bar">
-      return {
-        labels: this.barGraphData.map((_, index) => `Day ${index + 1}`), // Create labels for the chart
-        datasets: [
-          {
-            label: "Sleep Hours",
-            data: this.barGraphData, // Data for the bars (sleep hours)
-            backgroundColor: "#7c3aed", // Color for the bars
-            borderRadius: 4, // Rounded corners for bars
-            borderWidth: 1,
-          },
-        ],
-      };
+    lineChartData(): ChartData<"line"> {
+      // Only return line chart data when chart is true
+      if (this.chart) {
+        return {
+          labels: Array.from({ length: 7 }, (_, i) => `Day ${i + 1}`),
+          datasets: [
+            {
+              label: "Heart Rate",
+              data: this.heartRateData,
+              borderColor: "#ff6363",
+              fill: false,
+              tension: 0.4,
+              borderWidth: 2,
+            },
+          ],
+        } as ChartData<"line">;
+      }
+      return { labels: [], datasets: [] };
+    },
+    barChartData(): ChartData<"bar"> {
+      // Only return bar chart data when sleepChart is true
+      if (this.sleepChart) {
+        const validData = this.barGraphData.filter(
+          (value) => value !== undefined && value !== null
+        );
+
+        return {
+          labels: Array.from({ length: 7 }, (_, i) => `Day ${i + 1}`),
+          datasets: [
+            {
+              label: "Sleep Hours",
+              data: validData,
+              backgroundColor: "#7c3aed",
+              borderRadius: 4,
+              borderWidth: 1,
+            },
+          ],
+        } as ChartData<"bar">;
+      }
+      return { labels: [], datasets: [] };
     },
     chartOptions() {
       return {
@@ -130,12 +161,35 @@ export default defineComponent({
         },
         plugins: {
           legend: {
-            display: false, // Hide the legend
+            display: false,
           },
           tooltip: {
             callbacks: {
-              label: (tooltipItem: { raw: any }) => `${tooltipItem.raw} hrs`, // Display hours in tooltip
+              label: (tooltipItem: { raw: any }) => `${tooltipItem.raw} BPM`,
             },
+          },
+        },
+      };
+    },
+    barChartOptions() {
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+          x: {
+            display: false,
+          },
+          y: {
+            display: false,
+            beginAtZero: true,
+          },
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            enabled: false,
           },
         },
       };
@@ -145,8 +199,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-/* You can add custom styles for your chart here */
 div[style*="height"] {
-  height: 200px; /* Set a fixed height for the chart */
+  height: 200px;
 }
 </style>

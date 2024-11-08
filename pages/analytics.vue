@@ -47,7 +47,13 @@
             </div>
 
             <!-- Other Health Cards -->
-            <HealthCard title="Heart Rate" icon="heart" value="79 Bpm" chart />
+            <HealthCard
+              title="Heart Rate"
+              value="79 Bpm"
+              icon="heart"
+              chart
+              :heartRateData="[72, 78, 98, 74, 110, 80, 78, 105, 98, 89, 67]"
+            />
             <HealthCard title="Steps" icon="steps" value="999/2000" />
             <HealthCard
               title="Sleep"
@@ -97,17 +103,14 @@ export default defineComponent({
     ];
     const dayNames = ["S", "M", "T", "W", "T", "F", "S"];
 
-    // Get the current month and year
     const currentMonthYear = `${
       monthNames[todayDate.getMonth()]
     } ${todayDate.getFullYear()}`;
 
-    // Get today's day name for highlighting
     const todayName = dayNames[todayDate.getDay()];
 
-    // Calculate the current week's dates
     const startOfWeek = new Date(todayDate);
-    startOfWeek.setDate(todayDate.getDate() - todayDate.getDay()); // Sunday as the start of the week
+    startOfWeek.setDate(todayDate.getDate() - todayDate.getDay());
     const weekDays = Array.from({ length: 7 }, (_, i) => {
       const date = new Date(startOfWeek);
       date.setDate(startOfWeek.getDate() + i);
