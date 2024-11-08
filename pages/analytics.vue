@@ -48,12 +48,15 @@
 
             <!-- Other Health Cards -->
             <HealthCard title="Heart Rate" icon="heart" value="79 Bpm" chart />
+            <HealthCard title="Steps" icon="steps" value="999/2000" />
             <HealthCard
-              title="Steps"
-              icon="steps"
-              value="999/2000"
+              title="Sleep"
+              value="8 hrs"
+              icon="sleep"
+              :sleepChart="true"
+              :barGraphData="[6, 4, 8, 10, 5, 6, 8]"
             />
-            <HealthCard title="Sleep" icon="sleep" sleepChart />
+
             <HealthCard title="Water" icon="drop" value="6/8 Cups" />
           </div>
         </div>
