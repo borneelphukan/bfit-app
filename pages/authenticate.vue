@@ -13,10 +13,7 @@
       </h2>
       <p class="mt-2 text-center text-sm text-gray-600">
         or
-        <a
-          href="/sign-up"
-          class="font-medium text-emerald-600 hover:text-emerald-500"
-        >
+        <a href="#" class="font-medium text-emerald-600 hover:text-emerald-500">
           create an account for free
         </a>
       </p>
