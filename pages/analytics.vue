@@ -54,7 +54,13 @@
               chart
               :heartRateData="[72, 78, 98, 74, 110, 80, 78, 105, 98, 89, 67]"
             />
-            <HealthCard title="Steps" icon="steps" value="999/2000" />
+            <HealthCard
+              title="Steps"
+              :steps="true"
+              :stepsDataArray="[1100, 100]"
+              icon="steps"
+              value="1100/1200"
+            />
             <HealthCard
               title="Sleep"
               value="8 hrs"
@@ -101,7 +107,7 @@ export default defineComponent({
       "November",
       "December",
     ];
-    const dayNames = ["S", "M", "T", "W", "T", "F", "S"];
+    const dayNames = ["Su", "M", "T", "W", "T", "F", "Sa"];
 
     const currentMonthYear = `${
       monthNames[todayDate.getMonth()]

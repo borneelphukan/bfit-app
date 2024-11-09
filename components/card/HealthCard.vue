@@ -16,6 +16,10 @@
       <BarChart :data="barChartData" :options="barChartOptions" />
     </div>
 
+    <div v-if="steps" class="mt-2">
+      <Doughnut :data="stepsData" :options="stepsCardProps" />
+    </div>
+
     <div v-if="map" class="h-24 mt-2 rounded-lg">
       <!-- Add map content here, if available -->
     </div>
@@ -24,8 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { Line } from "vue-chartjs";
-import { Bar } from "vue-chartjs";
+import { Doughnut, Line, Bar } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
@@ -34,6 +37,8 @@ import {
   LineElement,
   PointElement,
   BarElement,
+  DoughnutController,
+  ArcElement,
   CategoryScale,
   LinearScale,
 } from "chart.js";
@@ -52,6 +57,8 @@ ChartJS.register(
   LineElement,
   PointElement,
   BarElement,
+  DoughnutController,
+  ArcElement,
   CategoryScale,
   LinearScale
 );
@@ -60,6 +67,7 @@ export default defineComponent({
   components: {
     LineChart: Line,
     BarChart: Bar,
+    Doughnut,
   },
   props: {
     title: { type: String, required: true },
@@ -67,9 +75,11 @@ export default defineComponent({
     icon: { type: String, required: false },
     chart: { type: Boolean, default: false },
     sleepChart: { type: Boolean, default: false },
+    steps: { type: Boolean, default: false },
     map: { type: Boolean, default: false },
     barGraphData: { type: Array as () => number[], default: () => [] },
     heartRateData: { type: Array as () => number[], default: () => [] },
+    stepsDataArray: { type: Array as () => number[], default: () => [] },
   },
   computed: {
     backgroundColor() {
@@ -107,7 +117,6 @@ export default defineComponent({
       }
     },
     lineChartData(): ChartData<"line"> {
-      // Only return line chart data when chart is true
       if (this.chart) {
         return {
           labels: Array.from({ length: 7 }, (_, i) => `Day ${i + 1}`),
@@ -126,7 +135,6 @@ export default defineComponent({
       return { labels: [], datasets: [] };
     },
     barChartData(): ChartData<"bar"> {
-      // Only return bar chart data when sleepChart is true
       if (this.sleepChart) {
         const validData = this.barGraphData.filter(
           (value) => value !== undefined && value !== null
@@ -144,6 +152,21 @@ export default defineComponent({
             },
           ],
         } as ChartData<"bar">;
+      }
+      return { labels: [], datasets: [] };
+    },
+    stepsData(): ChartData<"doughnut"> {
+      if (this.steps) {
+        return {
+          labels: ["Completed Steps", "Remaining Steps"],
+          datasets: [
+            {
+              data: this.stepsDataArray,
+              backgroundColor: ["#facc15", "#d1d5db"],
+              borderWidth: 0,
+            },
+          ],
+        } as ChartData<"doughnut">;
       }
       return { labels: [], datasets: [] };
     },
@@ -190,6 +213,22 @@ export default defineComponent({
           },
           tooltip: {
             enabled: false,
+          },
+        },
+      };
+    },
+    stepsCardProps() {
+      return {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false,
+          },
+          tooltip: {
+            callbacks: {
+              label: (tooltipItem: { raw: any }) => `${tooltipItem.raw} steps`,
+            },
           },
         },
       };
