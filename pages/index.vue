@@ -53,7 +53,7 @@ export default defineComponent({
   setup() {
     const router = useRouter();
     const handleButtonClick = () => {
-      router.push("/home");
+      router.push("/login");
     };
 
     return { handleButtonClick };

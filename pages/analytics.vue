@@ -46,30 +46,36 @@
               <HealthCard title="Cycling" icon="cycle" map class="flex-grow" />
             </div>
 
-            <!-- Other Health Cards -->
-            <HealthCard
-              title="Heart Rate"
-              value="79 Bpm"
-              icon="heart"
-              chart
-              :heartRateData="[72, 78, 98, 74, 110, 80, 78, 105, 98, 89, 67]"
-            />
-            <HealthCard
-              title="Steps"
-              :steps="true"
-              :stepsDataArray="[1100, 100]"
-              icon="steps"
-              value="1100/1200"
-            />
-            <HealthCard
-              title="Sleep"
-              value="8 hrs"
-              icon="sleep"
-              :sleepChart="true"
-              :barGraphData="[6, 4, 8, 10, 5, 6, 8]"
-            />
+            <!-- Health Cards Column -->
+            <div class="flex flex-col gap-4 mb-4">
+              <!-- Heart Rate Card with Smaller Height -->
+              <HealthCard
+                title="Heart Rate"
+                value="79 Bpm"
+                icon="heart"
+                chart
+                class="h-24"
+                :heartRateData="[72, 78, 98, 74, 110, 80, 78, 105, 98, 89, 67]"
+              />
+              <HealthCard
+                title="Sleep"
+                value="8 hrs"
+                icon="sleep"
+                :sleepChart="true"
+                :barGraphData="[6, 4, 8, 10, 5, 6, 8]"
+              />
+            </div>
 
-            <HealthCard title="Water" icon="drop" value="6/8 Cups" />
+            <div class="flex flex-col gap-4 mb-4">
+              <HealthCard
+                title="Steps"
+                :steps="true"
+                :stepsDataArray="[1100, 100]"
+                icon="steps"
+                value="1100/1200"
+              />
+              <HealthCard title="Water" icon="drop" value="6/8 Cups" />
+            </div>
           </div>
         </div>
       </div>
@@ -107,7 +113,7 @@ export default defineComponent({
       "November",
       "December",
     ];
-    const dayNames = ["Su", "M", "T", "W", "T", "F", "Sa"];
+    const dayNames = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
 
     const currentMonthYear = `${
       monthNames[todayDate.getMonth()]

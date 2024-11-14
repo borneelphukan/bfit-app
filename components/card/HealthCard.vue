@@ -1,26 +1,34 @@
 <template>
-  <div :class="['p-4 rounded-lg', backgroundColor]">
+  <div
+    :class="[
+      'p-4 rounded-lg',
+      backgroundColor,
+      'h-full', // Add small gap between items
+
+      ,
+    ]"
+  >
     <div v-if="title" class="flex items-center text-lg font-semibold">
       <img v-if="iconPath" :src="iconPath" alt="icon" class="w-6 h-6 mr-2" />
       {{ title }}
     </div>
-    <div v-if="value" class="text-2xl font-bold mt-2">
+    <div v-if="value" class="text-2xl font-bold">
       {{ value }}
     </div>
 
-    <div v-if="chart" class="mt-2">
+    <div v-if="chart" class="">
       <LineChart :data="lineChartData" :options="chartOptions" />
     </div>
 
-    <div v-if="sleepChart" class="mt-2">
+    <div v-if="sleepChart" class="">
       <BarChart :data="barChartData" :options="barChartOptions" />
     </div>
 
-    <div v-if="steps" class="mt-2">
+    <div v-if="steps">
       <Doughnut :data="stepsData" :options="stepsCardProps" />
     </div>
 
-    <div v-if="map" class="h-24 mt-2 rounded-lg">
+    <div v-if="map" class="h-24 mt-2 rounded-lg flex-grow">
       <!-- Add map content here, if available -->
     </div>
   </div>
@@ -116,6 +124,7 @@ export default defineComponent({
           return "";
       }
     },
+
     lineChartData(): ChartData<"line"> {
       if (this.chart) {
         return {
@@ -134,6 +143,7 @@ export default defineComponent({
       }
       return { labels: [], datasets: [] };
     },
+
     barChartData(): ChartData<"bar"> {
       if (this.sleepChart) {
         const validData = this.barGraphData.filter(
